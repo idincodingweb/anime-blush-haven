@@ -1,11 +1,31 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Play } from "lucide-react";
+import { Menu, X, Play, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { currentUser, logout } = useAuth();
+  const { toast } = useToast();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast({
+        title: "Logged out",
+        description: "You have been successfully logged out.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log out",
+        variant: "destructive",
+      });
+    }
+  };
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -53,11 +73,29 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button variant="default" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
-              Watch Now
-            </Button>
+          {/* User Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            {currentUser ? (
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-secondary/50">
+                  <User className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">{currentUser.displayName || currentUser.email}</span>
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleLogout}
+                  className="hover:bg-destructive hover:text-destructive-foreground transition-all duration-300"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <Button variant="default" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+                Login to Watch
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -87,13 +125,34 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button 
-                variant="default" 
-                className="bg-gradient-primary mt-4 w-full"
-                onClick={() => setIsOpen(false)}
-              >
-                Watch Now
-              </Button>
+              {currentUser ? (
+                <div className="space-y-3 pt-3 border-t border-border/50">
+                  <div className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-secondary/50">
+                    <User className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium">{currentUser.displayName || currentUser.email}</span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="w-full hover:bg-destructive hover:text-destructive-foreground transition-all duration-300"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button 
+                  variant="default" 
+                  className="bg-gradient-primary mt-4 w-full"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Login to Watch
+                </Button>
+              )}
             </div>
           </div>
         )}
