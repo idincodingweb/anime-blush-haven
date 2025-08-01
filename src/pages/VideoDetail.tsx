@@ -18,6 +18,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CommentSection from "@/components/CommentSection";
 
 // Mock user reviews data
 const mockReviews = [
@@ -337,6 +338,15 @@ const VideoDetail = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Comments Section */}
+        <section className="py-20 bg-background/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <CommentSection videoId={id || ''} />
             </div>
           </div>
         </section>

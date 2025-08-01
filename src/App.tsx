@@ -10,6 +10,7 @@ import VideoDetail from "./pages/VideoDetail";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,14 @@ const App = () => (
             } />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route 
+              path="/profile" 
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              } 
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

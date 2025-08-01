@@ -32,6 +32,7 @@ const Navbar = () => {
     { name: "Categories", path: "/#categories" },
     { name: "Popular", path: "/#popular" },
     { name: "About", path: "/about" },
+    ...(currentUser ? [{ name: "Profile", path: "/profile" }] : []),
   ];
 
   const isActive = (path: string) => {
