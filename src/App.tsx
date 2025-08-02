@@ -12,6 +12,8 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import StoryList from "./pages/StoryList";
+import StoryDetail from "./pages/StoryDetail";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/about" element={<About />} />
+            <Route path="/stories" element={<StoryList />} />
+            <Route path="/story/:id" element={<StoryDetail />} />
             <Route path="/login" element={<LoginPage />} />
             <Route 
               path="/profile" 
