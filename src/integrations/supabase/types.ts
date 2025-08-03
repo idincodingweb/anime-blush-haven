@@ -14,7 +14,152 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      comment_likes: {
+        Row: {
+          comment_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          comment_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          comment_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comment_likes_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "comments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      comments: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          likes: number | null
+          rating: number | null
+          user_id: string
+          video_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          likes?: number | null
+          rating?: number | null
+          user_id: string
+          video_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          likes?: number | null
+          rating?: number | null
+          user_id?: string
+          video_id?: string
+        }
+        Relationships: []
+      }
+      favorites: {
+        Row: {
+          content_id: string
+          content_type: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          content_id: string
+          content_type: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          favorite_genres: string[] | null
+          id: string
+          location: string | null
+          updated_at: string
+          watched_anime: number | null
+          website: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          favorite_genres?: string[] | null
+          id: string
+          location?: string | null
+          updated_at?: string
+          watched_anime?: number | null
+          website?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          favorite_genres?: string[] | null
+          id?: string
+          location?: string | null
+          updated_at?: string
+          watched_anime?: number | null
+          website?: string | null
+        }
+        Relationships: []
+      }
+      watch_history: {
+        Row: {
+          id: string
+          progress: number | null
+          user_id: string
+          video_id: string
+          watched_at: string
+        }
+        Insert: {
+          id?: string
+          progress?: number | null
+          user_id: string
+          video_id: string
+          watched_at?: string
+        }
+        Update: {
+          id?: string
+          progress?: number | null
+          user_id?: string
+          video_id?: string
+          watched_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
