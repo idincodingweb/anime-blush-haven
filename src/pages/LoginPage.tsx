@@ -24,17 +24,30 @@ const LoginPage = () => {
     setLoading(true);
     
     try {
+      let result;
       if (isLogin) {
-        await login(email, password);
-        toast({
-          title: "Welcome back!",
-          description: "You have successfully logged in.",
-        });
+        result = await login(email, password);
+        if (!result.error) {
+          toast({
+            title: "Welcome back!",
+            description: "You have successfully logged in.",
+          });
+        }
       } else {
-        await register(email, password, name);
+        result = await register(email, password, name);
+        if (!result.error) {
+          toast({
+            title: "Account created!",
+            description: "Welcome to AnimeStream!",
+          });
+        }
+      }
+      
+      if (result?.error) {
         toast({
-          title: "Account created!",
-          description: "Welcome to AnimeStream!",
+          title: "Error",
+          description: result.error.message || "Something went wrong",
+          variant: "destructive",
         });
       }
     } catch (error: any) {

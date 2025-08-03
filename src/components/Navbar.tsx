@@ -81,7 +81,7 @@ const Navbar = () => {
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-secondary/50">
                   <User className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium">{currentUser.displayName || currentUser.email}</span>
+                  <span className="text-sm font-medium">{currentUser.email}</span>
                 </div>
                 <Button 
                   variant="outline" 
@@ -131,7 +131,7 @@ const Navbar = () => {
                 <div className="space-y-3 pt-3 border-t border-border/50">
                   <div className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-secondary/50">
                     <User className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium">{currentUser.displayName || currentUser.email}</span>
+                    <span className="text-sm font-medium">{currentUser.email}</span>
                   </div>
                   <Button 
                     variant="outline" 
