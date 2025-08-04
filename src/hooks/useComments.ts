@@ -65,13 +65,7 @@ export const useComments = (videoId: string) => {
           content,
           rating: rating || null
         })
-        .select(`
-          *,
-          profiles (
-            display_name,
-            avatar_url
-          )
-        `)
+        .select()
         .single();
 
       if (error) {
@@ -79,8 +73,20 @@ export const useComments = (videoId: string) => {
         return { error };
       }
 
-      setComments(prev => [data, ...prev]);
-      return { data };
+      // Fetch the profile separately to avoid relation issues
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('display_name, avatar_url')
+        .eq('id', currentUser.id)
+        .single();
+
+      const commentWithProfile = { 
+        ...data, 
+        profiles: profile
+      } as Comment;
+
+      setComments(prev => [commentWithProfile, ...prev]);
+      return { data: commentWithProfile };
     } catch (error) {
       console.error('Error adding comment:', error);
       return { error };

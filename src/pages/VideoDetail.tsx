@@ -198,66 +198,6 @@ const VideoDetail = () => {
                   </p>
                 </div>
 
-                {/* User Rating Section */}
-                <div className="bg-gradient-card rounded-2xl p-6 mb-8">
-                  <h3 className="text-xl font-bold text-foreground mb-4">Rate this Anime</h3>
-                  <div className="flex items-center space-x-4 mb-4">
-                    <span className="text-muted-foreground">Your rating:</span>
-                    {renderStars(userRating, true)}
-                    {userRating > 0 && (
-                      <span className="text-primary font-semibold">{userRating}/5</span>
-                    )}
-                  </div>
-                  <Textarea
-                    placeholder="Write your review..."
-                    value={userComment}
-                    onChange={(e) => setUserComment(e.target.value)}
-                    className="mb-4"
-                    rows={3}
-                  />
-                  <Button className="bg-gradient-primary">
-                    Submit Review
-                  </Button>
-                </div>
-
-                {/* Reviews Section */}
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-foreground">User Reviews</h3>
-                  {mockReviews.map((review) => (
-                    <div key={review.id} className="bg-gradient-card rounded-xl p-6">
-                      <div className="flex items-start space-x-4">
-                        <Avatar className="w-12 h-12">
-                          <AvatarImage src={review.user.avatar} />
-                          <AvatarFallback>
-                            <User className="w-6 h-6" />
-                          </AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-semibold text-foreground">{review.user.name}</h4>
-                            <span className="text-sm text-muted-foreground">{review.date}</span>
-                          </div>
-                          <div className="flex items-center space-x-2 mb-3">
-                            {renderStars(review.rating, false, "w-4 h-4")}
-                            <span className="text-sm font-medium text-foreground">{review.rating}/5</span>
-                          </div>
-                          <p className="text-muted-foreground mb-3 leading-relaxed">
-                            {review.comment}
-                          </p>
-                          <div className="flex items-center space-x-4">
-                            <Button variant="ghost" size="sm" className="text-xs">
-                              <Heart className="w-3 h-3 mr-1" />
-                              Helpful ({review.helpful})
-                            </Button>
-                            <Button variant="ghost" size="sm" className="text-xs">
-                              Reply
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               {/* Sidebar */}
