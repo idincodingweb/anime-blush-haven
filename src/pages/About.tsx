@@ -46,13 +46,17 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/90 to-indigo-900/80 z-0"></div>
       
-      <div className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-hero overflow-hidden">
-          <div className="absolute inset-0 bg-black/20"></div>
+      <div className="relative z-10">
+        <Navbar />
+        
+        <div className="pt-16">
+          {/* Hero Section */}
+          <section className="relative py-20 overflow-hidden">
+            <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
           
           {/* Floating Elements */}
           <div className="absolute top-20 left-10 w-20 h-20 bg-anime-pink/20 rounded-full animate-float blur-sm"></div>
@@ -281,8 +285,9 @@ const About = () => {
                 Explore Collection
               </Button>
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
+        </div>
       </div>
       <Footer />
     </div>

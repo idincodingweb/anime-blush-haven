@@ -102,52 +102,42 @@ const EditProfilePage: React.FC = () => {
 
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Please log in to edit your profile</h1>
-            <Button onClick={() => navigate('/login')}>
-              Go to Login
-            </Button>
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/90 to-indigo-900/80"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <div className="container mx-auto px-4 py-8">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4 text-white">Please log in to edit your profile</h1>
+              <Button onClick={() => navigate('/login')}>Go to Login</Button>
+            </div>
           </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">Loading...</div>
-        </div>
-        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-secondary text-primary-foreground py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Edit Profile</h1>
-          <p className="text-xl mb-8">Customize your anime streaming experience</p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/90 to-indigo-900/80"></div>
+      <div className="relative z-10">
+        <Navbar />
+        
+        <section className="bg-white/5 backdrop-blur-sm text-white py-16">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Edit Profile</h1>
+            <p className="text-xl mb-8">Customize your anime streaming experience</p>
+          </div>
+        </section>
 
-      <div className="container mx-auto px-4 py-8">
-        <Card className="max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle>Profile Settings</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Avatar Upload */}
+        <div className="container mx-auto px-4 py-8">
+          <Card className="max-w-2xl mx-auto bg-white/10 backdrop-blur-sm border-white/20">
+            <CardHeader>
+              <CardTitle className="text-white">Profile Settings</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              
             <div className="flex flex-col items-center space-y-4">
               <div className="relative">
                 <Avatar className="w-24 h-24">
@@ -175,55 +165,58 @@ const EditProfilePage: React.FC = () => {
               <p className="text-sm text-muted-foreground">Click the camera icon to upload a new avatar</p>
             </div>
 
-            {/* Display Name */}
+            
             <div className="space-y-2">
-              <Label htmlFor="display-name">Display Name</Label>
+              <Label htmlFor="display-name" className="text-white">Display Name</Label>
               <Input
                 id="display-name"
                 value={formData.display_name}
                 onChange={(e) => setFormData(prev => ({ ...prev, display_name: e.target.value }))}
                 placeholder="Enter your display name"
+                className="bg-card/50 border-border/50 text-white placeholder:text-muted-foreground focus:ring-0 focus-visible:ring-0"
               />
             </div>
 
-            {/* Bio */}
+            
             <div className="space-y-2">
-              <Label htmlFor="bio">Bio</Label>
+              <Label htmlFor="bio" className="text-white">Bio</Label>
               <Textarea
                 id="bio"
                 value={formData.bio}
                 onChange={(e) => setFormData(prev => ({ ...prev, bio: e.target.value }))}
                 placeholder="Tell us about yourself..."
-                className="min-h-[100px]"
+                className="min-h-[100px] bg-card/50 border-border/50 text-white placeholder:text-muted-foreground focus:ring-0 focus-visible:ring-0"
               />
             </div>
 
-            {/* Location */}
+            
             <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
+              <Label htmlFor="location" className="text-white">Location</Label>
               <Input
                 id="location"
                 value={formData.location}
                 onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                 placeholder="Where are you from?"
+                className="bg-card/50 border-border/50 text-white placeholder:text-muted-foreground focus:ring-0 focus-visible:ring-0"
               />
             </div>
 
-            {/* Website */}
+            
             <div className="space-y-2">
-              <Label htmlFor="website">Website</Label>
+              <Label htmlFor="website" className="text-white">Website</Label>
               <Input
                 id="website"
                 type="url"
                 value={formData.website}
                 onChange={(e) => setFormData(prev => ({ ...prev, website: e.target.value }))}
                 placeholder="https://your-website.com"
+                className="bg-card/50 border-border/50 text-white placeholder:text-muted-foreground focus:ring-0 focus-visible:ring-0"
               />
             </div>
 
-            {/* Watched Anime Count */}
+            
             <div className="space-y-2">
-              <Label htmlFor="watched-anime">Anime Watched</Label>
+              <Label htmlFor="watched-anime" className="text-white">Anime Watched</Label>
               <Input
                 id="watched-anime"
                 type="number"
@@ -231,12 +224,13 @@ const EditProfilePage: React.FC = () => {
                 value={formData.watched_anime}
                 onChange={(e) => setFormData(prev => ({ ...prev, watched_anime: parseInt(e.target.value) || 0 }))}
                 placeholder="How many anime have you watched?"
+                className="bg-card/50 border-border/50 text-white placeholder:text-muted-foreground focus:ring-0 focus-visible:ring-0"
               />
             </div>
 
-            {/* Favorite Genres */}
+            
             <div className="space-y-2">
-              <Label>Favorite Genres</Label>
+              <Label className="text-white">Favorite Genres</Label>
               <div className="flex flex-wrap gap-2">
                 {AVAILABLE_GENRES.map((genre) => (
                   <Button
@@ -244,7 +238,7 @@ const EditProfilePage: React.FC = () => {
                     variant={formData.favorite_genres.includes(genre) ? "default" : "outline"}
                     size="sm"
                     onClick={() => toggleGenre(genre)}
-                    className="text-xs"
+                    className="text-xs text-white"
                   >
                     {genre}
                     {formData.favorite_genres.includes(genre) && (
@@ -257,21 +251,20 @@ const EditProfilePage: React.FC = () => {
                 Selected: {formData.favorite_genres.length} genres
               </p>
             </div>
+              <div className="flex space-x-4 pt-6">
+                <Button onClick={handleSave} disabled={isSubmitting} className="flex-1 bg-gradient-primary">
+                  {isSubmitting ? 'Saving...' : 'Save Changes'}
+                </Button>
+                <Button variant="outline" onClick={() => navigate('/profile')} className="flex-1 border-white/30 text-white">
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-            {/* Action Buttons */}
-            <div className="flex space-x-4 pt-6">
-              <Button onClick={handleSave} disabled={isSubmitting} className="flex-1">
-                {isSubmitting ? 'Saving...' : 'Save Changes'}
-              </Button>
-              <Button variant="outline" onClick={() => navigate('/profile')} className="flex-1">
-                Cancel
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <Footer />
       </div>
-
-      <Footer />
     </div>
   );
 };

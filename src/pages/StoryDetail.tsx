@@ -118,11 +118,15 @@ const StoryDetail = () => {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/90 to-indigo-900/80"></div>
       
-      {/* Story Header */}
-      <section className="py-8 bg-gradient-to-br from-anime-pink/10 to-anime-purple/10">
+      <div className="relative z-10">
+        <Navbar />
+      
+        {/* Story Header */}
+        <section className="py-8 bg-white/5 backdrop-blur-sm relative">
         <div className="container mx-auto px-4">
           <Button 
             variant="outline" 
@@ -138,15 +142,15 @@ const StoryDetail = () => {
               {story.category}
             </Badge>
             
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 animate-fade-in">
               {story.title}
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-6 animate-fade-in">
+            <p className="text-xl text-white/80 mb-6 animate-fade-in">
               {story.excerpt}
             </p>
             
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-6">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-white/70 mb-6">
               <div className="flex items-center">
                 <User className="w-4 h-4 mr-2" />
                 {story.author}
@@ -272,8 +276,9 @@ const StoryDetail = () => {
               </div>
             )}
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
 
       <Footer />
     </div>

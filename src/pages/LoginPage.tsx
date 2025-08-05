@@ -62,10 +62,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20 flex">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex relative overflow-hidden">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/90 to-indigo-900/80"></div>
       {/* Left Side - Login Form */}
-      <div className="flex-1 flex items-center justify-center p-8 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+      <div className="flex-1 flex items-center justify-center p-8 relative z-10">
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-3xl m-8"></div>
         
         <div className="w-full max-w-md relative z-10">
           {/* Logo */}
@@ -80,10 +82,10 @@ const LoginPage = () => {
 
           {/* Welcome Text */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">
+            <h1 className="text-3xl font-bold text-white mb-2">
               {isLogin ? 'Welcome Back!' : 'Join AnimeStream'}
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-white/80">
               {isLogin 
                 ? 'Sign in to continue watching your favorite anime' 
                 : 'Create an account to start your anime journey'
@@ -156,7 +158,7 @@ const LoginPage = () => {
 
           {/* Toggle Login/Register */}
           <div className="text-center mt-6">
-            <p className="text-muted-foreground">
+            <p className="text-white/70">
               {isLogin ? "Don't have an account? " : "Already have an account? "}
               <button
                 onClick={() => setIsLogin(!isLogin)}
@@ -171,7 +173,7 @@ const LoginPage = () => {
           <div className="text-center mt-8">
             <Link
               to="/"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm text-white/60 hover:text-white transition-colors"
             >
               ← Back to Home
             </Link>
@@ -181,7 +183,7 @@ const LoginPage = () => {
 
       {/* Right Side - Animated Background */}
       <div className="hidden lg:flex flex-1 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-transparent"></div>
         
         {/* Floating Elements */}
@@ -196,24 +198,24 @@ const LoginPage = () => {
             <div className="w-32 h-32 bg-gradient-primary rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-glow animate-glow-pulse">
               <Play className="w-16 h-16 text-white" />
             </div>
-            <h2 className="text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Unlimited Anime
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-white/80 mb-8">
               Stream thousands of anime episodes and movies in HD quality
             </p>
             <div className="space-y-4 text-left">
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-muted-foreground">Watch anywhere, anytime</span>
+                <span className="text-white/70">Watch anywhere, anytime</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-muted-foreground">HD quality streaming</span>
+                <span className="text-white/70">HD quality streaming</span>
               </div>
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-muted-foreground">Personal watchlist</span>
+                <span className="text-white/70">Personal watchlist</span>
               </div>
             </div>
           </div>
