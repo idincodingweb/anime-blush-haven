@@ -10,7 +10,11 @@ import {
   Share2, 
   Download,
   ChevronLeft,
-  User
+  User,
+  ThumbsUp,
+  ThumbsDown,
+  Info,
+  Image as ImageIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -89,223 +93,225 @@ const VideoDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={anime.thumbnail}
+          alt={anime.title}
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-blue-900/90 to-indigo-900/80"></div>
+      </div>
+
       <Navbar />
       
-      <div className="pt-16">
-        {/* Video Player Section */}
-        <section className="relative bg-black">
-          <div className="container mx-auto px-4 py-8">
-            {/* Back Button */}
-            <Link to="/">
-              <Button variant="ghost" className="mb-6 text-white hover:bg-white/10">
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-
-            {/* Video Player */}
-            <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl">
-              {isVideoLoading ? (
-                <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-white text-lg">Loading video...</p>
-                  </div>
-                </div>
-              ) : (
-                <iframe
-                  src={`https://www.youtube.com/embed/${anime.youtubeId}?autoplay=1&controls=1&rel=0&mute=1`}
-                  title={anime.title}
-                  className="w-full h-full"
-                  allowFullScreen
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                />
-              )}
+      <div className="relative z-10 pt-16">
+        {!showContent ? (
+          // Beautiful Loading Skeleton with glassmorphism
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20">
+              <div className="w-20 h-20 border-4 border-anime-pink border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+              <h2 className="text-2xl font-bold text-white mb-2">Loading Experience...</h2>
+              <p className="text-white/70">Preparing your anime journey</p>
             </div>
           </div>
-        </section>
+        ) : (
+          <>
+            {/* Hero Section */}
+            <section className="relative py-20 overflow-hidden">
+              <div className="container mx-auto px-4">
+                {/* Back Button */}
+                <Link to="/">
+                  <Button variant="ghost" className="mb-8 text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm">
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Back to Library
+                  </Button>
+                </Link>
 
-        {/* Content Section */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            {!showContent ? (
-              // Loading Skeleton
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="lg:col-span-2 space-y-6">
-                  <Skeleton className="h-12 w-3/4" />
-                  <div className="flex gap-4">
-                    <Skeleton className="h-6 w-24" />
-                    <Skeleton className="h-6 w-20" />
-                    <Skeleton className="h-6 w-32" />
-                  </div>
-                  <div className="flex gap-2">
-                    {Array.from({ length: 4 }).map((_, i) => (
-                      <Skeleton key={i} className="h-8 w-16" />
-                    ))}
-                  </div>
-                  <Skeleton className="h-32 w-full" />
-                </div>
-                <div className="space-y-6">
-                  <Skeleton className="h-48 w-full" />
-                  <Skeleton className="h-32 w-full" />
-                  <Skeleton className="h-64 w-full" />
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                {/* Main Content */}
-                <div className="lg:col-span-2">
-                  {/* Title and Meta */}
-                  <div className="mb-8">
-                    <div className="flex items-start justify-between mb-4">
-                      <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-                        {anime.title}
-                      </h1>
-                      <div className="flex items-center space-x-2">
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          onClick={() => setIsLiked(!isLiked)}
-                          className={isLiked ? "text-red-500 border-red-500" : ""}
-                        >
-                          <Heart className={`w-5 h-5 ${isLiked ? "fill-current" : ""}`} />
-                        </Button>
-                        <Button variant="outline" size="icon">
-                          <Share2 className="w-5 h-5" />
-                        </Button>
-                        <Button variant="outline" size="icon">
-                          <Download className="w-5 h-5" />
-                        </Button>
-                      </div>
+                {/* Main Hero Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  {/* Video Player */}
+                  <div className="order-2 lg:order-1">
+                    <div className="relative aspect-video rounded-3xl overflow-hidden bg-black/50 backdrop-blur-sm shadow-2xl border border-white/10">
+                      {isVideoLoading ? (
+                        <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="w-16 h-16 border-4 border-anime-pink border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                            <p className="text-white text-lg">Loading video...</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${anime.youtubeId}?autoplay=1&controls=1&rel=0&mute=1`}
+                          title={anime.title}
+                          className="w-full h-full"
+                          allowFullScreen
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        />
+                      )}
                     </div>
+                  </div>
 
-                    {/* Rating and Meta Info */}
-                    <div className="flex flex-wrap items-center gap-6 mb-6">
-                      <div className="flex items-center space-x-2">
-                        {renderStars(Math.floor(anime.rating))}
-                        <span className="font-semibold text-foreground">{anime.rating}</span>
-                        <span className="text-muted-foreground">(1,234 reviews)</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-muted-foreground">
-                        <Calendar className="w-4 h-4" />
-                        <span>{anime.year}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-muted-foreground">
-                        <Users className="w-4 h-4" />
-                        <span>{anime.episodes} episodes</span>
-                      </div>
-                      <Badge className={`${getStatusColor(anime.status)} border font-medium`}>
-                        {anime.status}
-                      </Badge>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {anime.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="bg-secondary/50 hover:bg-secondary/70 transition-colors"
+                  {/* Movie Info */}
+                  <div className="order-1 lg:order-2 text-white">
+                    {/* Header Tabs */}
+                    <div className="flex items-center space-x-8 mb-8">
+                      {['Description', 'Playlist', 'Profile', 'Next movie'].map((tab, index) => (
+                        <button
+                          key={tab}
+                          className={`text-sm font-medium pb-2 border-b-2 transition-colors ${
+                            index === 0 
+                              ? 'border-white text-white' 
+                              : 'border-transparent text-white/60 hover:text-white/80'
+                          }`}
                         >
-                          {tag}
-                        </Badge>
+                          {tab}
+                        </button>
                       ))}
                     </div>
 
+                    {/* Character Labels */}
+                    <div className="mb-8 space-y-4">
+                      <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium border border-white/30">
+                        Main Characters
+                      </div>
+                      <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium border border-white/30 ml-4">
+                        Featured Cast
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+                      {anime.title}
+                    </h1>
+                    <h2 className="text-2xl md:text-3xl font-medium text-white/80 mb-6">
+                      {anime.title} {/* Japanese/Original title */}
+                    </h2>
+
+                    {/* Meta Info */}
+                    <div className="flex flex-wrap items-center gap-4 mb-6 text-white/80">
+                      <span>{anime.year}</span>
+                      <span>•</span>
+                      <span className="capitalize">{anime.category}/Fantasy</span>
+                      <span>•</span>
+                      <span>{anime.episodes} episodes</span>
+                    </div>
+
+                    {/* Rating Percentage */}
+                    <div className="mb-8">
+                      <p className="text-lg mb-2">
+                        <span className="text-2xl font-bold text-green-400">
+                          {Math.round(anime.rating * 20)}%
+                        </span>{' '}
+                        menyukai film ini
+                      </p>
+                      <p className="text-white/60 text-sm">Pengguna google</p>
+                    </div>
+
+                    {/* Rating Buttons */}
+                    <div className="flex items-center space-x-4 mb-8">
+                      <Button
+                        size="lg"
+                        className="bg-green-500/20 hover:bg-green-500/30 text-green-400 border border-green-500/30 rounded-full backdrop-blur-sm"
+                      >
+                        <ThumbsUp className="w-5 h-5" />
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 rounded-full backdrop-blur-sm"
+                      >
+                        <ThumbsDown className="w-5 h-5" />
+                      </Button>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap gap-4 mb-8">
+                      <Button 
+                        size="lg"
+                        className="bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm border border-white/30 rounded-full px-8"
+                      >
+                        Ringkasan
+                      </Button>
+                      <Button 
+                        size="lg"
+                        variant="outline"
+                        className="bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full px-8 backdrop-blur-sm"
+                      >
+                        Ulasan
+                      </Button>
+                      <Button 
+                        size="lg"
+                        variant="outline"
+                        className="bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full px-8 backdrop-blur-sm"
+                      >
+                        Cuplikan dan klip
+                      </Button>
+                    </div>
+
                     {/* Description */}
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {anime.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Sidebar */}
-                <div className="space-y-6">
-                  {/* Quick Stats */}
-                  <div className="bg-gradient-card rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-foreground mb-4">Quick Stats</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Genre</span>
-                        <span className="text-foreground font-medium capitalize">{anime.category}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Status</span>
-                        <span className="text-foreground font-medium capitalize">{anime.status}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Episodes</span>
-                        <span className="text-foreground font-medium">{anime.episodes}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Release Year</span>
-                        <span className="text-foreground font-medium">{anime.year}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Rating</span>
-                        <span className="text-foreground font-medium">{anime.rating}/5</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Watch Actions */}
-                  <div className="bg-gradient-card rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-foreground mb-4">Watch Options</h3>
-                    <div className="space-y-3">
-                      <Button className="w-full bg-gradient-primary">
-                        <Play className="w-4 h-4 mr-2" />
-                        Continue Watching
-                      </Button>
-                      <Button variant="outline" className="w-full">
-                        Add to Watchlist
-                      </Button>
-                      <Button variant="outline" className="w-full">
-                        Download Episode
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Related Anime */}
-                  <div className="bg-gradient-card rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-foreground mb-4">You Might Also Like</h3>
-                    <div className="space-y-4">
-                      {animeData
-                        .filter(a => a.category === anime.category && a.id !== anime.id)
-                        .slice(0, 3)
-                        .map((relatedAnime) => (
-                          <Link
-                            key={relatedAnime.id}
-                            to={`/anime/${relatedAnime.id}`}
-                            className="flex items-center space-x-3 group hover:bg-secondary/30 p-2 rounded-lg transition-colors"
-                          >
-                            <img
-                              src={relatedAnime.thumbnail}
-                              alt={relatedAnime.title}
-                              className="w-16 h-12 object-cover rounded-lg"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-medium text-foreground group-hover:text-primary transition-colors truncate">
-                                {relatedAnime.title}
-                              </h4>
-                              <div className="flex items-center space-x-1 mt-1">
-                                <Star className="w-3 h-3 text-yellow-400 fill-current" />
-                                <span className="text-xs text-muted-foreground">{relatedAnime.rating}</span>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                      <p className="text-white/90 leading-relaxed">
+                        {anime.description}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        </section>
+            </section>
+
+            {/* Screenshot Gallery */}
+            <section className="py-20">
+              <div className="container mx-auto px-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="relative group">
+                      <img
+                        src={anime.thumbnail}
+                        alt={`Screenshot ${i}`}
+                        className="w-full h-32 object-cover rounded-xl"
+                      />
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
+                        <Play className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* See All Button */}
+                <div className="flex justify-end">
+                  <Button 
+                    variant="outline" 
+                    className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 rounded-full"
+                  >
+                    Lihat semua
+                    <ChevronLeft className="w-4 h-4 ml-2 rotate-180" />
+                  </Button>
+                </div>
+              </div>
+            </section>
+
+            {/* Moral Story Section */}
+            <section className="py-20 bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm">
+              <div className="container mx-auto px-4 text-center">
+                <h2 className="text-4xl font-bold text-white mb-8">Moral Story</h2>
+                <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
+                  <p className="text-xl text-white/90 leading-relaxed mb-6">
+                    Ingatan manusia memanggilah terbatas. Namun apa yang melekat dalam hati takkan pernah selesai dimakan waktu. Berapapun lamanya, sejauh apapun jaraknya, dan serumit apapun alurnya. Ketulislah dalam hati akan selalu nememu tempat untuk pulang.
+                  </p>
+                  <p className="text-white/60">
+                    Himawari.2022
+                  </p>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
 
         {/* Comments Section */}
         {showContent && (
-          <section className="py-20 bg-background/50">
+          <section className="relative z-10 py-20 bg-gradient-to-r from-purple-900/20 to-blue-900/20 backdrop-blur-sm">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <CommentSection videoId={id || ''} />
@@ -314,6 +320,7 @@ const VideoDetail = () => {
           </section>
         )}
       </div>
+      
       <Footer />
     </div>
   );
