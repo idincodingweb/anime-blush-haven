@@ -24,6 +24,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import CommentSection from "@/components/CommentSection";
+import RecommendedVideos from "@/components/RecommendedVideos";
 
 const VideoDetail = () => {
   const { id } = useParams();
@@ -307,6 +308,16 @@ const VideoDetail = () => {
               </div>
             </section>
           </>
+        )}
+
+        {/* Recommendations Section */}
+        {showContent && (
+          <div className="relative z-10">
+            <RecommendedVideos 
+              currentAnimeId={anime.id} 
+              category={anime.category}
+            />
+          </div>
         )}
 
         {/* Comments Section */}

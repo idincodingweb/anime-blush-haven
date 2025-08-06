@@ -25,7 +25,7 @@ const AnimeCard = ({ anime, index = 0 }: AnimeCardProps) => {
 
   return (
     <div
-      className="group relative bg-gradient-card rounded-2xl overflow-hidden hover:shadow-card-anime transition-all duration-500 hover:-translate-y-2 animate-scale-in"
+      className="group relative bg-card/50 backdrop-blur-sm border border-border/20 rounded-2xl overflow-hidden hover:shadow-anime transition-all duration-500 hover:-translate-y-2 animate-scale-in hover:bg-card/70"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Thumbnail */}
