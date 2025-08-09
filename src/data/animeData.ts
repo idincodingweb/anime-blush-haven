@@ -97,8 +97,8 @@ export const animeData: Anime[] = [
     episodes: 1,
     status: "completed",
     description: "Shiki the Golden Lion kidnaps Nami and forces the crew to his flying islands.",
-    thumbnail: "https://img.youtube.com/vi/r2vDD9FFAH8/maxresdefault.jpg",
-    youtubeId: "r2vDD9FFAH8",
+    thumbnail: "https://img.youtube.com/vi/Xf0ZWb3-5MY/maxresdefault.jpg",
+    youtubeId: "Xf0ZWb3-5MY",
     tags: ["Movie", "Shiki", "Flying Islands", "Pirates"]
   },
   {
@@ -110,8 +110,8 @@ export const animeData: Anime[] = [
     episodes: 30,
     status: "completed",
     description: "Luffy attempts to rescue Ace from execution at Marineford.",
-    thumbnail: "https://img.youtube.com/vi/BpTqOoRCQKE/maxresdefault.jpg",
-    youtubeId: "BpTqOoRCQKE",
+    thumbnail: "https://img.youtube.com/vi/EJ3d91B1RdA/maxresdefault.jpg",
+    youtubeId: "EJ3d91B1RdA",
     tags: ["War", "Ace", "Whitebeard", "Epic"]
   },
   {
@@ -123,8 +123,8 @@ export const animeData: Anime[] = [
     episodes: 35,
     status: "completed",
     description: "The Straw Hats declare war on the World Government to save Robin.",
-    thumbnail: "https://img.youtube.com/vi/0-HFU_5b_ec/maxresdefault.jpg",
-    youtubeId: "0-HFU_5b_ec",
+    thumbnail: "https://img.youtube.com/vi/ey4LUaZPe-c/maxresdefault.jpg",
+    youtubeId: "ey4LUaZPe-c",
     tags: ["Government", "Robin", "Declaration of War", "Epic"]
   },
   {
@@ -136,8 +136,8 @@ export const animeData: Anime[] = [
     episodes: 35,
     status: "completed",
     description: "The crew faces betrayal and learns about the dark secrets of Water 7.",
-    thumbnail: "https://img.youtube.com/vi/1UFUA_mHGp8/maxresdefault.jpg",
-    youtubeId: "1UFUA_mHGp8",
+    thumbnail: "https://img.youtube.com/vi/Cjx9hmeg15s/maxresdefault.jpg",
+    youtubeId: "Cjx9hmeg15s",
     tags: ["Betrayal", "Water 7", "Shipwrights", "Drama"]
   },
   {
