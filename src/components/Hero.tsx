@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Play, Star, Calendar } from "lucide-react";
-import heroImage from "@/assets/anime-hero.jpg";
+import heroImage from "@/assets/naruto-hero.jpg";
 
 const Hero = () => {
   return (
@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="Anime Hero"
+          alt="Naruto Hero"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
