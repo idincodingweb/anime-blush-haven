@@ -25,15 +25,15 @@ export const animeData: Anime[] = [
   // One Piece Movies and Episodes
   {
     id: "1",
-    title: "Naruto peranh shinobi",
+    title: "Naruto perang shinobi",
     category: "action",
     rating: 4.9,
     year: 2021,
     episodes: 1,
     status: "completed",
-    description: "Luffy and his crew reach Wano Country in this milestone episode.",
-    thumbnail: "https://img.youtube.com/vi/vPK7nojL5r0IGBl7/maxresdefault.jpg",
-    youtubeId: "vPK7nojL5r0IGBl7",
+    description: "Naruto bertarug melawan shinob 7.",
+    thumbnail: "https://img.youtube.com/vi/5Z55CDYX6_0/maxresdefault.jpg",
+    youtubeId: "5Z55CDYX6_0",
     tags: ["Pirates", "Adventure", "Milestone", "Epic"]
   },
   {
